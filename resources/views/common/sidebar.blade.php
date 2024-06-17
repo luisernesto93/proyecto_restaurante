@@ -22,90 +22,81 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     @php
-        //Es para verificar si la ruta fue seleccionada, requiere un array con los nombres de las rutas para verificar sus extensiones
-        //.index, .create, .update, .edit, .show. Ejemplo selectedRout(['estudiantes']) verificará así y devolverá true o false
-        //estudiantes.index, estudiantes.create, estudiantes.update, estudiantes.edit, estudiantes.show
-        //Por defecto usar solo para verificar rutas de ese tipo por cada elemento del array enviado
-        //También se puede enviar extensiones personalizadas y esos serán las nuevas extensiones a verificar por cada elemento
-        function isRouteSelected($rutas, $extension = null)
-        {
-            $extension = $extension ?? ['index', 'create', 'update', 'edit', 'show'];
-            foreach ($rutas as $ruta) {
-                foreach ($extension as $view) {
-                    if (Route::is($ruta . '.' . $view)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        function addAttribMenu($applyAttributes = false)
-        {
-            $menu = [
-                'nav-link' => $applyAttributes ? '' : 'collapsed',
-                'aria-expanded' => $applyAttributes ? 'true' : 'false',
-                'nav-item' => $applyAttributes ? 'active' : '',
-                'collapse' => $applyAttributes ? 'show' : '',
-            ];
-            return $menu;
-        }
+    //Es para verificar si la ruta fue seleccionada, requiere un array con los nombres de las rutas para verificar sus extensiones
+    //.index, .create, .update, .edit, .show. Ejemplo selectedRout(['estudiantes']) verificará así y devolverá true o false
+    //estudiantes.index, estudiantes.create, estudiantes.update, estudiantes.edit, estudiantes.show
+    //Por defecto usar solo para verificar rutas de ese tipo por cada elemento del array enviado
+    //También se puede enviar extensiones personalizadas y esos serán las nuevas extensiones a verificar por cada elemento
+    function isRouteSelected($rutas, $extension = null)
+    {
+    $extension = $extension ?? ['index', 'create', 'update', 'edit', 'show'];
+    foreach ($rutas as $ruta) {
+    foreach ($extension as $view) {
+    if (Route::is($ruta . '.' . $view)) {
+    return true;
+    }
+    }
+    }
+    return false;
+    }
+    function addAttribMenu($applyAttributes = false)
+    {
+    $menu = [
+    'nav-link' => $applyAttributes ? '' : 'collapsed',
+    'aria-expanded' => $applyAttributes ? 'true' : 'false',
+    'nav-item' => $applyAttributes ? 'active' : '',
+    'collapse' => $applyAttributes ? 'show' : '',
+    ];
+    return $menu;
+    }
 
-        $routesModuleEstudents = ['estudiantes', 'generos', 'expedicion_cis'];
-        $menu_estudiantes = addAttribMenu(isRouteSelected($routesModuleEstudents));
+    $routesModuleEstudents = ['estudiantes', 'generos', 'expedicion_cis'];
+    $menu_estudiantes = addAttribMenu(isRouteSelected($routesModuleEstudents));
 
-        $menu_administradores = addAttribMenu(
-            isRouteSelected(['users']) ||
-                Route::is('users.delete') ||
-                isRouteSelected(['empresas'], ['index', 'create']) ||
-                isRouteSelected(['roles', 'permissions'], ['index', 'create']),
-        );
+    $menu_administradores = addAttribMenu(
+    isRouteSelected(['users']) ||
+    Route::is('users.delete') ||
+    isRouteSelected(['empresas'], ['index', 'create']) ||
+    isRouteSelected(['roles', 'permissions'], ['index', 'create']),
+    );
 
     @endphp
 
     <li class="nav-item {{ $menu_estudiantes['nav-item'] }}">
-        <a class="nav-link collapsed {{ $menu_estudiantes['nav-link'] }}" href="#" data-toggle="collapse"
-            data-target="#collapseEstudent" aria-expanded="{{ $menu_estudiantes['aria-expanded'] }}"
-            aria-controls="collapseEstudent">
+        <a class="nav-link collapsed {{ $menu_estudiantes['nav-link'] }}" href="#" data-toggle="collapse" data-target="#collapseEstudent" aria-expanded="{{ $menu_estudiantes['aria-expanded'] }}" aria-controls="collapseEstudent">
             <i class="fas fa-user-graduate"></i>
             <span>ESTUDIANTE</span>
         </a>
-        <div id="collapseEstudent" class="collapse {{ $menu_estudiantes['collapse'] }}" aria-labelledby="headingPages"
-            data-parent="#accordionSidebar">
+        <div id="collapseEstudent" class="collapse {{ $menu_estudiantes['collapse'] }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Route::is('estudiantes.index') ? 'active' : '' }}"
-                    href="{{ route('estudiantes.index') }}">Clientes</a>
-                <a class="collapse-item {{ Route::is('medicos.index') ? 'active' : '' }}"
-                    href="{{ route('medicos.index') }}">Medicos</a>
+                <a class="collapse-item {{ Route::is('estudiantes.index') ? 'active' : '' }}" href="{{ route('estudiantes.index') }}">Estudiantes</a>
+                <a class="collapse-item {{ Route::is('clientes.index') ? 'active' : '' }}" href="{{ route('clientes.index') }}">Clientes</a>
+                <a class="collapse-item {{ Route::is('medicos.index') ? 'active' : '' }}" href="{{ route('medicos.index') }}">Medicos</a>
             </div>
         </div>
     </li>
     <hr class="sidebar-divider">
 
     @hasrole('Admin')
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item {{ $menu_administradores['nav-item'] }}">
-            <a class="nav-link collapsed {{ $menu_administradores['nav-link'] }}" href="#" data-toggle="collapse"
-                data-target="#collapsePages" aria-expanded="{{ $menu_administradores['aria-expanded'] }}"
-                aria-controls="collapsePages">
-                <i class="fas fa-user-shield"></i>
-                <span>ADMINISTRADOR</span>
-            </a>
-            <div id="collapsePages" class="collapse {{ $menu_administradores['collapse'] }}" aria-labelledby="headingPages"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Roles & Permisos</h6>
-                    <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
-                    <a class="collapse-item" href="{{ route('permissions.index') }}">Permisos</a>
-                    <a class="collapse-item {{ Route::is('users.index') ? 'active' : '' }}"
-                        href="{{ route('users.index') }}">Usuarios</a>
-                    <a class="collapse-item {{ Route::is('empresas.index') ? 'active' : '' }}"
-                        href="{{ route('empresas.index') }}">Empresa</a>
-                </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item {{ $menu_administradores['nav-item'] }}">
+        <a class="nav-link collapsed {{ $menu_administradores['nav-link'] }}" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="{{ $menu_administradores['aria-expanded'] }}" aria-controls="collapsePages">
+            <i class="fas fa-user-shield"></i>
+            <span>ADMINISTRADOR</span>
+        </a>
+        <div id="collapsePages" class="collapse {{ $menu_administradores['collapse'] }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Roles & Permisos</h6>
+                <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
+                <a class="collapse-item" href="{{ route('permissions.index') }}">Permisos</a>
+                <a class="collapse-item {{ Route::is('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">Usuarios</a>
+                <a class="collapse-item {{ Route::is('empresas.index') ? 'active' : '' }}" href="{{ route('empresas.index') }}">Empresa</a>
             </div>
-        </li>
+        </div>
+    </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
     @endhasrole
 
     <li class="nav-item">

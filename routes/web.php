@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Estudiantes
     Route::resource('estudiantes', App\Http\Controllers\EstudianteController::class);
     Route::get('estudiantes/{estudiante_id}/{estado}', [App\Http\Controllers\EstudianteController::class, 'actualizarEstado'])->name('estudiantes.estado');
+    //clientes
+    Route::resource('clientes', App\Http\Controllers\ClienteController::class);
+    Route::get('clientes/{cliente_id}/{estado}', [App\Http\Controllers\ClienteController::class, 'actualizarEstado'])->name('clientes.estado');
 
     // Users
     Route::prefix('users')->name('users.')->group(function () {

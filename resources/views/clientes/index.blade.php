@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Lista de Estudiantes')
+@section('title', 'Lista de clientes')
 
 @section('content')
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Listado de Estudiantes</h1>
+            <h1 class="h3 mb-0 text-gray-800">Listado de clientes</h1>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ route('estudiantes.create') }}" class="btn btn-outline-success">
-                        <i class="fas fa-plus"></i> NUEVO ESTUDIANTE
+                    <a href="{{ route('clientes.create') }}" class="btn btn-outline-success">
+                        <i class="fas fa-plus"></i> NUEVO CLIENTE
                     </a>
                 </div>
             </div>
@@ -37,34 +37,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (count($estudiantes))
-                                @foreach ($estudiantes as $key => $estudiante)
+                            @if (count($cliente))
+                                @foreach ($cliente as $key => $clientes)
                                     <tr>
-                                        <td class="p-2 align-middle">{{ $estudiante->id }}</td>
-                                        <td class="p-2 align-middle">{{ $estudiante->nombres ?? '' }}
-                                            {{ $estudiante->apellidos ?? '' }}</td>
-                                        <td class="p-2 align-middle">{{ $estudiante->documento }}</td>
-                                        <td class="p-2 align-middle">{{ $estudiante->telefono }}</td>
-                                        <td class="p-2 align-middle">{{ $estudiante->correo }}</td>
-                                        <td class="p-2 align-middle text-center"> {!! $estudiante->estado_texto == 'ACTIVO'
+                                        <td class="p-2 align-middle">{{ $cliente->id }}</td>
+                                        <td class="p-2 align-middle">{{ $cliente->nombres ?? '' }}
+                                            {{ $cliente->apellidos ?? '' }}</td>
+                                        <td class="p-2 align-middle">{{ $cliente->documento }}</td>
+                                        <td class="p-2 align-middle">{{ $cliente->telefono }}</td>
+                                        <td class="p-2 align-middle">{{ $cliente->correo }}</td>
+                                        <td class="p-2 align-middle text-center"> {!! $cliente->estado_texto == 'ACTIVO'
                                             ? '<span class="badge badge-success shadow">ACTIVO</span>'
                                             : '<span class="badge badge-danger shadow">INACTIVO</span>' !!} </td>
                                         <td style="display: flex">
-                                            <a href="{{ route('estudiantes.edit', ['estudiante' => $estudiante->id]) }}"
+                                            <a href="{{ route('clientes.edit', ['cliente' => $cliente->id]) }}"
                                                 class="btn btn-outline-primary m-1">
                                                 <i class="fa fa-pen"></i>
                                             </a>
-                                            <a href="{{ route('estudiantes.show', ['estudiante' => $estudiante->id]) }}"
+                                            <a href="{{ route('clientes.show', ['cliente' => $cliente->id]) }}"
                                                 class="btn btn-outline-info m-1">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            @if ($estudiante->estado == 0)
-                                                <a href="{{ route('estudiantes.estado', ['estudiante_id' => $estudiante->id, 'estado' => 1]) }}"
+                                            @if ($cliente->estado == 0)
+                                                <a href="{{ route('clientes.estado', ['cliente_id' => $cliente->id, 'estado' => 1]) }}"
                                                     class="btn btn-outline-success m-1">
                                                     <i class="fa fa-check"></i>
                                                 </a>
-                                            @elseif ($estudiante->estado == 1)
-                                                <a href="{{ route('estudiantes.estado', ['estudiante_id' => $estudiante->id, 'estado' => 0]) }}"
+                                            @elseif ($cliente->estado == 1)
+                                                <a href="{{ route('clientes.estado', ['cliente_id' => $cliente->id, 'estado' => 0]) }}"
                                                     class="btn btn-outline-danger m-1">
                                                     <i class="fa fa-ban"></i>
                                                 </a>
@@ -84,14 +84,14 @@
                         </tbody>
                     </table>
 
-                    {{ $estudiantes->links() }}
+                    {{ $clientes->links() }}
                 </div>
             </div>
         </div>
 
     </div>
-    @if (count($estudiantes))
-        @include('estudiantes.delete-modal')
+    @if (count($clientes))
+        @include('clientes.delete-modal')
     @endif
 @endsection
 

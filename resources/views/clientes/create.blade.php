@@ -12,7 +12,7 @@
             <div class="card-header py-3">
                 <h6 class="font-weight-bold text-primary"><i class="fas fa-user-plus"></i> REGISTRAR CLIENTE</h6>
             </div>
-            <form method="POST" action="{{ route('estudiantes.store') }}">
+            <form method="POST" action="{{ route('clientes.store') }}">
                 @csrf
                 <div class="card-body">
                     <div class="form-group row">
@@ -109,7 +109,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-success btn-user float-right mb-3"><i
                             class="fas fa-save"></i> GUARDAR</button>
-                    <a class="btn btn-outline-primary float-right mr-3 mb-3" href="{{ route('estudiantes.index') }}"><i
+                    <a class="btn btn-outline-primary float-right mr-3 mb-3" href="{{ route('clientes.index') }}"><i
                             class="fas fa-arrow-left fa-sm text-primary-100"></i> CANCELAR</a>
                 </div>
             </form>
