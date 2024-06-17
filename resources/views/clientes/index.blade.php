@@ -90,7 +90,7 @@
 
     </div>
     @if (count($clientes))
-        @include('clientes.delete-modal')
+        @include('clientes.delete-model')
     @endif
 @endsection
 
