@@ -5,7 +5,7 @@
             {{-- <i class="fas fa-university"></i> --}}
             <img src="{{ asset('images/images.png') }}" alt="Logo" width="50px">
         </div>
-        <div class="sidebar-brand-text mx-3">PRO AVANZADA</div>
+        <div class="sidebar-brand-text mx-3">RESTAURANTE</div>
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
