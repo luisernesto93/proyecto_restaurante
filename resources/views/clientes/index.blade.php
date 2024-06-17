@@ -15,7 +15,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
         {{-- Alert Messages --}}
         @include('common.alert')
@@ -37,8 +36,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (count($cliente))
-                                @foreach ($cliente as $key => $clientes)
+                            @if (count($clientes))
+                                @foreach ($clientes as $key => $cliente)
                                     <tr>
                                         <td class="p-2 align-middle">{{ $cliente->id }}</td>
                                         <td class="p-2 align-middle">{{ $cliente->nombres ?? '' }}

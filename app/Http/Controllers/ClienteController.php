@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -17,9 +20,9 @@ class ClienteController extends Controller
         if (Auth::user()->can('clientes.index')) {
             abort(403, 'Unauthorized action.');
         }
-        $cliente = Cliente::paginate(11);
+        $clientes = Cliente::paginate(11);
         return view('clientes.index', [
-            'cliente' => $cliente,
+            'clientes' => $clientes,
         ]);
     }
 
