@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -32,6 +35,26 @@ Route::group(['middleware' => 'auth'], function () {
     //clientes
     Route::resource('clientes', App\Http\Controllers\ClienteController::class);
     Route::get('clientes/{cliente_id}/{estado}', [App\Http\Controllers\ClienteController::class, 'actualizarEstado'])->name('clientes.estado');
+
+    //CLIENTES 
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
+    Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
+    Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
+    Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
+    Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+    Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
+    //CATEGORIAS 
+    Route::resource('categories', CategoryController::class);
+     //PRODUCTOS 
+     Route::resource('products', ProductController::class); 
+   
+   
+
+
+
+
 
     // Users
     Route::prefix('users')->name('users.')->group(function () {

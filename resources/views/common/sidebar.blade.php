@@ -64,14 +64,19 @@
 
     <li class="nav-item {{ $menu_estudiantes['nav-item'] }}">
         <a class="nav-link collapsed {{ $menu_estudiantes['nav-link'] }}" href="#" data-toggle="collapse" data-target="#collapseEstudent" aria-expanded="{{ $menu_estudiantes['aria-expanded'] }}" aria-controls="collapseEstudent">
-            <i class="fas fa-user-graduate"></i>
-            <span>ESTUDIANTE</span>
+            <i class='fas fa-donate'></i>
+            <span>VENTAS</span>
         </a>
         <div id="collapseEstudent" class="collapse {{ $menu_estudiantes['collapse'] }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Route::is('estudiantes.index') ? 'active' : '' }}" href="{{ route('estudiantes.index') }}">Estudiantes</a>
+                <!-- <a class="collapse-item {{ Route::is('estudiantes.index') ? 'active' : '' }}" href="{{ route('estudiantes.index') }}">Estudiantes</a>
                 <a class="collapse-item {{ Route::is('clientes.index') ? 'active' : '' }}" href="{{ route('clientes.index') }}">Clientes</a>
-                <a class="collapse-item {{ Route::is('medicos.index') ? 'active' : '' }}" href="{{ route('medicos.index') }}">Medicos</a>
+                <a class="collapse-item {{ Route::is('medicos.index') ? 'active' : '' }}" href="{{ route('medicos.index') }}">Medicos</a> -->
+                <a class="collapse-item {{ Route::is('customers.index') ? 'active' : '' }}" href="{{ route('customers.index') }}">Clientes</a>
+
+               <a class="collapse-item {{ Route::is('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">Categorías</a>
+
+              <a class="collapse-item {{ Route::is('products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">Productos</a>
             </div>
         </div>
     </li>
@@ -90,7 +95,15 @@
                 <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
                 <a class="collapse-item" href="{{ route('permissions.index') }}">Permisos</a>
                 <a class="collapse-item {{ Route::is('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">Usuarios</a>
-                <a class="collapse-item {{ Route::is('empresas.index') ? 'active' : '' }}" href="{{ route('empresas.index') }}">Empresa</a>
+                <!-- <a class="collapse-item {{ Route::is('empresas.index') ? 'active' : '' }}" href="{{ route('empresas.index') }}">Empresa</a> -->
+
+                <a class="collapse-item {{ Route::is('customers.index') ? 'active' : '' }}" href="{{ route('customers.index') }}">Clientes</a>
+
+                <a class="collapse-item {{ Route::is('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">Categorías</a>
+
+                <a class="collapse-item {{ Route::is('products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">Productos</a>
+
+
             </div>
         </div>
     </li>
