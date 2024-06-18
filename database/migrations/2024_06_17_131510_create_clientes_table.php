@@ -19,10 +19,10 @@ return new class extends Migration
             //$table->string('expedicion')->nullable();
             $table->string('nombres')->nullable();
             $table->string('apellidos')->nullable();
-            $table->date('fecha_nacimiento')->nullable();
+            // $table->date('fecha_nacimiento')->nullable();
             //$table->string('genero')->nullable();
             //$table->string('nacionalidad')->nullable();
-            $table->string('direccion')->nullable();
+            // $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
             $table->string('correo')->nullable();
             $table->string('nombre_referencia')->nullable();
